@@ -1,8 +1,22 @@
-import React from "react";
-import { Form, Input, Button, Checkbox } from "antd";
-const login = () => {
-  const onFinish = (values) => {
-    console.log("Success:", values);
+import styles from "../styles/Login.module.css";
+import { Form, Input, Button } from "antd";
+import axios from "axios";
+// import Image from "next/image";
+const Login = () => {
+  const onFinish = async (values) => {
+    const username = values.username;
+    const password = values.password;
+    try {
+      // eslint-disable-next-line no-unused-vars
+      const { data } = await axios.post("/api/user/login", {
+        username,
+        password,
+      });
+      alert("Login Successed")
+    } catch (error) {
+      alert("Login Failed", error);
+    }
+    // console.log(username, password);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -10,15 +24,16 @@ const login = () => {
   };
 
   return (
-    <div className="login-form">
+    <div className={styles.loginform}>
       <Form
         name="basic"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 8 }}
-        initialValues={{ remember: true }}
+        // initialValues={{ remember: true }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="on"
+        className={styles.context}
       >
         <Form.Item
           label="Username"
@@ -33,7 +48,7 @@ const login = () => {
           name="password"
           rules={[{ required: true, message: "Please input your password!" }]}
         >
-          <Input.Password />
+          <Input />
         </Form.Item>
 
         <Form.Item
@@ -41,7 +56,7 @@ const login = () => {
           valuePropName="checked"
           wrapperCol={{ offset: 8, span: 16 }}
         >
-          <Checkbox>Remember me</Checkbox>
+          {/* <Checkbox>Remember me</Checkbox> */}
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
@@ -50,8 +65,22 @@ const login = () => {
           </Button>
         </Form.Item>
       </Form>
+      <div className={styles.area}>
+        <ul className={styles.circles}>
+          <li>AladinTech</li>
+          <li></li>
+          <li></li>
+          <li>HaoHan</li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
     </div>
   );
 };
 
-export default login;
+export default Login;
