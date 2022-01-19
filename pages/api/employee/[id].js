@@ -10,28 +10,30 @@ export default async function handler(req, res) {
   } = req;
   dbConnect();
 
+  //
+
   if (method === "GET") {
     try {
-      const product = await Employee.findById(id);
-      res.status(200).json(product);
+      const employee = await Employee.findById(id);
+      res.status(200).json(employee);
     } catch (error) {
       res.status(500).json(error);
     }
   }
   if (method === "PUT") {
     try {
-      const product = await Employee.create(req.body);
-      res.status(201).json(product);
+      const employee = await Employee.updateOne(req.body);
+      res.status(201).json(employee);
     } catch (error) {
       res.status(500).json(error);
     }
   }
-//   if (method === "DELETE") {
-//     try {
-//       const product = await Employee.create(req.body);
-//       res.status(201).json(product);
-//     } catch (error) {
-//       res.status(500).json(error);
-//     }
-//   }
+  if (method === "DELETE") {
+    try {
+      const employee = await Employee.deleteOne({_id: id});
+      res.status(201).json(employee);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  }
 }

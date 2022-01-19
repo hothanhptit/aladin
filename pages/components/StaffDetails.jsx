@@ -1,12 +1,17 @@
 import React from "react";
-import { Button, Space, Table, SearchOutlined, Input, Highlighter } from "antd";
-import { useState } from "react";
+// eslint-disable-next-line no-unused-vars
+import { Button, Space, Table, SearchOutlined, Input, Highlighter, Avatar } from "antd";
+// import { useState } from "react";
 import Link from "next/link";
+// import Image from "next/image";
+
+// const date = moment("2022-01-12T15:04:35.280+00:00", [moment.ISO_8601, 'DDMMYYYY']).format('L');
 const StaffDetails = ({ data }) => {
-  const [searchText, setSearchText] = useState("");
-  const [searchedColumn, setSearchedColumn] = useState("");
+  // const [searchText, setSearchText] = useState("");
+  // const [searchedColumn, setSearchedColumn] = useState("");
   // const params = dat
   // console.log(data[1]._id);
+  function handleEdit() {}
   const columns = [
     {
       title: "Name",
@@ -19,13 +24,34 @@ const StaffDetails = ({ data }) => {
       dataIndex: "img",
       key: "img",
       render: (avatar) => (
-        <img src={avatar} alt="avatar" className="staff-avatar" />
+        <Avatar
+          src={avatar}
+          alt="avatar"
+          size={{
+            xs: 24,
+            sm: 32,
+            md: 40,
+            lg: 64,
+            xl: 80,
+            xxl: 100,
+          }}
+          // width={150}
+          // height={150}
+          styles={{width: 64}}
+        />
       ),
     },
     {
       title: "Join date",
       dataIndex: "joined",
       key: "joined",
+      // render: (text) => {
+      //     <span>
+      //       {text}
+      //       aa
+      //       {moment(text, [moment.ISO_8601, "DDMMYYYY"]).format("L")}
+      //     </span>;
+      // },
     },
     {
       title: "Phone Number",
@@ -45,27 +71,32 @@ const StaffDetails = ({ data }) => {
     {
       title: "Action",
       key: "action",
-      render: (text, record) => (
+      dataIndex: "_id",
+      render: (text) => (
         <Space size="middle">
-          <Link href={`/staffs/${data._id} }`} passHref>
-            <Button type="primary" onClick>
-              Edit
+          <Link href={decodeURIComponent(`/staff/${text}`)} passHref>
+            <Button type="primary" onClick={handleEdit}>
+              View
             </Button>
           </Link>
-          <Button type="danger">Delete</Button>
+          <Button type="danger" disabled>
+            Delete
+          </Button>
         </Space>
       ),
     },
   ];
   return (
     <div className="staff-details">
-      <Table
-        columns={columns}
-        dataSource={data}
-        align="center"
-        size="large"
-      ></Table>
-      {console.log(data)}
+      {data ? (
+        <Table
+          columns={columns}
+          dataSource={data}
+          align="center"
+          size="large"
+        ></Table>
+      ) : null}
+      {/* {console.log(date)} */}
     </div>
   );
 };

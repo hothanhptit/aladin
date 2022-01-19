@@ -3,6 +3,19 @@
     flex-direction: row;
     justify-content: space-between;
     font-size: 24px;
-    width: 90%;
-    margin: 3% 5%;
+    /* width: 90%; */
+    padding: 3% 5%;
+    /* background-color: #505050; */
+    border-top: 2px solid #505050;
+    /* padding-top: 2%; */
+    background: #F4F9F9;
+}
+.link {
+    margin-bottom: 4px;
+}
+.title {
+    font-weight: 700;
+}
+.logo {
+    margin-top: 5%;
 }

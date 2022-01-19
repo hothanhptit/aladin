@@ -1,16 +1,30 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Form, Input, Button, DatePicker } from "antd";
 // import Cookies from "js-cookie";
 import axios from "axios";
-// import { Store } from "../../util/store";
+import { Store } from "../../util/store";
 // import moment from "moment";
 // import { UploadOutlined } from "@ant-design/icons";
 import moment from "moment";
 
-const DATE_FORMAT ='DD/MM/YYYY'
+const DATE_FORMAT = "DD/MM/YYYY";
 
-export default function FormAdd() {
+export default async function FormEdit() {
+  const { state, dispatch } = useContext(Store);
+  const { userInfo } = state;
+  const [userDetails, setUserDetails] = useState({});
+
+  const fetchInfo = await axios.get();
+  
+
+  useEffect(async () => {
+    const userDetails = await axios.get(
+      "https://api.cloudinary.com/v1_1/thanhh8nt/image/upload"
+    );
+    console.log(userDetails);
+  }, []);
+
   const [file, setFile] = useState(null);
   // const [resUrl, setResUrl] = useState("");
   // eslint-disable-next-line no-unused-vars
@@ -29,26 +43,31 @@ export default function FormAdd() {
       "https://api.cloudinary.com/v1_1/thanhh8nt/image/upload",
       sendData
     );
-      // const username = Cookies.get("userInfo")
-      // console.log(username)
-      // const username = await axios.get
+    // const username = Cookies.get("userInfo")
+    // console.log(username)
+    // const username = await axios.get
 
     // setResUrl(returnFromCloudinary.data.url);
-    const formatJoined = moment(new Date(values.joined)._d, moment.ISO_8601).format("L");
-    const formatDob = moment(new Date(values.dob._d), moment.ISO_8601).format("L");
-    // console.log(formatDob)
-    const updateUser = {
+    const formatJoined = moment(
+      new Date(values.joined)._d,
+      moment.ISO_8601
+    ).format("L");
+    const formatDob = moment(new Date(values.dob._d), moment.ISO_8601).format(
+      "L"
+    );
+    console.log(formatDob);
+    setUserDetails({
       name: values.name,
-      // username: "userInfo.username",
+      username: "userInfo.username",
       img: returnFromCloudinary.data.url,
       joined: formatJoined,
       phonenumber: values.phone,
-      email: values.email,
+      email: "abc",
       dob: formatDob,
-    };
+    });
     // console.log(updateUser);
     await axios
-      .post("/api/employee", updateUser)
+      .post("/api/employee", userDetails)
       .then(function (response) {
         console.log(response);
       })
@@ -90,7 +109,7 @@ export default function FormAdd() {
         </Select>
       </Form.Item> */}
       <Form.Item name="dob" label="Date Of Birth">
-        <DatePicker format={DATE_FORMAT}/>
+        <DatePicker format={DATE_FORMAT} />
       </Form.Item>
       <Form.Item name="joined" label="Join date">
         <DatePicker format={DATE_FORMAT} />

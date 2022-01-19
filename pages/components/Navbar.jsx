@@ -1,34 +1,46 @@
-import { Button, Menu } from "antd";
-import { useState } from "react";
-import {
-  MailOutlined,
-  AppstoreOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
+// import { Button, Menu } from "antd";
+// import { useState } from "react";
+// import {
+//   MailOutlined,
+//   AppstoreOutlined,
+//   SettingOutlined,
+// } from "@ant-design/icons";
 import Link from "next/link";
 import Image from "next/image";
-import Modal from "antd/lib/modal/Modal";
+import { useContext } from "react";
+import { Store } from "../../util/store";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
+// import Modal from "antd/lib/modal/Modal";
 // import Login from "./Login";
 
-const { SubMenu } = Menu;
+// const { SubMenu } = Menu;
 
 const Navbar = () => {
-  const [current, setCurrent] = useState("");
-  const handleClick = (e) => {
-    console.log(e);
-  };
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const router = useRouter();
+  const { state, dispatch } = useContext(Store);
+  const { userInfo } = state;
+  function logoutHandler() {
+    dispatch({ type: "USER_LOGOUT" });
+    Cookies.remove("userInfo");
+    router.push("/");
+  }
+  // const [current, setCurrent] = useState("");
+  // const handleClick = (e) => {
+  //   console.log(e);
+  // };
+  // const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+  // const showModal = () => {
+  //   setIsModalVisible(true);
+  // };
+  // const handleOk = () => {
+  //   setIsModalVisible(false);
+  // };
+  // const handleCancel = () => {
+  //   setIsModalVisible(false);
+  // };
 
   return (
     <div>
@@ -40,9 +52,9 @@ const Navbar = () => {
               alt="Picture of the author"
               width={60}
               height={52}
-            />{" "}
+            />
             <Link href="/">
-              <a>AladinTech</a>
+              <a>HaoHanTeam</a>
             </Link>
           </span>
           <Link href={"/"}>
@@ -54,22 +66,41 @@ const Navbar = () => {
           <Link href={"/"}>
             <a>Contact us</a>
           </Link>
-          <Link href={"/staffs"}>
-            <a>Staffs</a>
-          </Link>
+          {userInfo ? (
+            <Link href={"/staffs"}>
+              <a>Staffs</a>
+            </Link>
+          ) : null}
         </div>
         <div className="right-menu">
-          <div>
-            <button className="login-btn" onClick={showModal}>
-              <Link href="login">Login</Link>
-            </button>
-            <button className="sign-up-btn">
-              <Link href="login">Sign up</Link>
-            </button>
-          </div>
+          {userInfo ? (
+            <div>
+              <button className="login-btn">
+                <Link href="/myprofile">
+                  <a>Hi, {userInfo.username}</a>
+                  {/* <a>Hi</a> */}
+                </Link>
+              </button>
+              <button className="sign-up-btn" onClick={logoutHandler}>
+                <Link href="/">Logout</Link>
+              </button>
+            </div>
+          ) : (
+            <div>
+              <button className="login-btn">
+                <Link href="/login">
+                  <a>Login</a>
+                </Link>
+              </button>
+              <button className="sign-up-btn">
+                <Link href="/register">
+                  <a>Sign up</a>
+                </Link>
+              </button>
+            </div>
+          )}
         </div>
       </div>
-      {/* <hr/> */}
     </div>
   );
 };

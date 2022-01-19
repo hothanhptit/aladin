@@ -11,12 +11,13 @@ import {
   CopyrightCircleOutlined,
 } from "@ant-design/icons";
 import { Space, Row, Col } from "antd";
+import Link from "next/link";
 const Footer = () => {
   return (
     <Row gutter={16}>
       <div className={styles.footer}>
         <Col span={4}>
-          <div className="logo">
+          <div className={styles.logo}>
             <Image
               //   loader={myLoader}
               src="/logo.png"
@@ -28,7 +29,7 @@ const Footer = () => {
         </Col>
         <Col span={5}>
           <div className={styles.services}>
-            <h3>Services</h3>
+            <h3 className={styles.title}>Services</h3>
             <h5>VAS</h5>
             <h5>OutSoucing</h5>
             <h5>Platform</h5>
@@ -37,17 +38,32 @@ const Footer = () => {
         </Col>
         <Col span={6}>
           <div className={styles.contact}>
-            <h3>Contact</h3>
-            <div>
+            <h3 className={styles.title}>Contact</h3>
+            <div className={styles.link}>
               <Space size={32}>
-                <FacebookOutlined />
-                <LinkedinOutlined />
-                <TwitterOutlined />
-                <WhatsAppOutlined />
+                <Link href="https://www.facebook.com/aladintech.co" passHref>
+                  <a>
+                    <FacebookOutlined />
+                  </a>
+                </Link>
+                <Link href="/" passHref>
+                  <a><LinkedinOutlined /></a>
+                </Link>
+                <Link href="/" passHref>
+                  <a><TwitterOutlined /></a>
+                </Link>
+                <Link href="/" passHref>
+                  <a><WhatsAppOutlined /></a>
+                </Link>
               </Space>
             </div>
+            {/* <Space direction="horizontal" size={128} /> */}
             <h5>
-              <MailOutlined /> Email:  support@aladin.com
+              <Link href="mailto:support@aladintech.co" passHref>
+                <span>
+                  <a><MailOutlined /> Email: support@aladintech.co</a>
+                </span>
+              </Link>
             </h5>
             <h5>
               <PhoneOutlined /> Phone: 0988 985 247
@@ -56,7 +72,7 @@ const Footer = () => {
         </Col>
         <Col span={9}>
           <div className={styles.info}>
-            <h3>Infomation</h3>
+            <h3 className={styles.title}>Infomation</h3>
 
             <h5>
               <HomeOutlined /> Tầng 4, Tòa nhà Văn phòng HH1 Meco Complex, ngõ

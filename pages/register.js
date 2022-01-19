@@ -1,7 +1,6 @@
 import styles from "../styles/Login.module.css";
 import { Form, Input, Button } from "antd";
 import axios from "axios";
-// import Image from "next/image";
 import { Store } from "../util/store";
 import { useRouter } from "next/router";
 import { useContext } from "react";
@@ -12,26 +11,29 @@ const Login = () => {
   const redirect = router.query;
   const { state, dispatch } = useContext(Store);
   const { userInfo } = state;
+
   if (userInfo) {
     router.push("/");
-    // console.log(userInfo)
   }
   const onFinish = async (values) => {
-    const password = values.password;
     const username = values.username;
-    try {
-      const { data } = await axios.post("/api/user/login", {
-        username,
-        password,
-      });
-      // console.log(data);
-      dispatch({ type: "USER_LOGIN", payload: data });
-      Cookies.set("userInfo",  data);
-      localStorage.setItem("username", username);
-      router.push(redirect || "/");
-    } catch (error) {
-      console.log(error);
-      alert("Login failed, username or password incorrect!");
+    const password = values.password;
+    const cpassword = values.cpassword;
+    if (password === cpassword) {
+      try {
+        const { data } = await axios.post("/api/user/register", {
+          username,
+          password,
+        });
+        dispatch({ type: "USER_LOGIN", payload: data });
+        Cookies.set("userInfo", data);
+        router.push(redirect || "/");
+        localStorage.setItem("username", username);
+      } catch (error) {
+        alert("Username already taken!", error);
+      }
+    } else {
+      alert("Register failed, check your confirm password!");
     }
   };
 
@@ -62,6 +64,13 @@ const Login = () => {
           label="Password"
           name="password"
           rules={[{ required: true, message: "Please input your password!" }]}
+        >
+          <Input type="password" />
+        </Form.Item>
+        <Form.Item
+          label="Password"
+          name="cpassword"
+          rules={[{ required: true, message: "Please confirm your password!" }]}
         >
           <Input type="password" />
         </Form.Item>

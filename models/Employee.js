@@ -7,12 +7,18 @@ const EmployeesSchema = new mongoose.Schema(
       required: true,
       maxlength: 60,
     },
+    username: {
+      type: String,
+      required: true,
+      maxlength: 60,
+    },
     img: {
       type: String,
       required: true,
     },
     joined: {
-
+      type: Date,
+      required: true,
     },
     phonenumber: {
       type: String,
@@ -21,9 +27,10 @@ const EmployeesSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
+      unique: true,
     },
     dob: {
-      type: String,
+      type: Date,
       required: true,
     },
   },

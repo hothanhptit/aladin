@@ -1,19 +1,34 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { SearchOutlined } from "@ant-design/icons";
 import StaffDetails from "../components/StaffDetails";
-import { Button, Input } from "antd";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { Button, Input, Spin } from "antd";
+import { Store } from "../../util/store";
+import { useRouter } from "next/router";
+// import axios from "axios";
+// import { useState, useEffect } from "react";
 
 const suffix = (
   <SearchOutlined
     style={{
       fontSize: 16,
-      color: "#1890ff",
+      color: "#6ecb63",
     }}
   />
 );
-const Staffs = ({ users }) => {
+export default function Staffs({ users }) {
+  // const [users, setUsers] = useState();
+  const router = useRouter();
+  // eslint-disable-next-line no-unused-vars
+  const { state, dispatch } = useContext(Store);
+  const { userInfo } = state;
+  useEffect(() => {
+    if (userInfo) {
+      // setUsers(user)
+      router.push("/staffs");
+    } else {
+      router.push("/login");
+    }
+  }, [userInfo, router]);
   // const [APIData, setAPIData] = useState(users);
   // const [filteredResults, setFilteredResults] = useState(APIData);
   // const [searchInput, setSearchInput] = useState("");
@@ -77,25 +92,33 @@ const Staffs = ({ users }) => {
 
   return (
     <div className="staffs">
-      <div className="staffs-control">
-        <Input
-          suffix={suffix}
-          type="text"
-          placeholder="Search name..."
-          onChange={(e) => searchItems(e.target.value)}
-        />
+      {userInfo ? (
+        <div>
+          <div className="staffs-control">
+            <Input
+              suffix={suffix}
+              type="text"
+              placeholder="Search name..."
+              // eslint-disable-next-line no-undef
+              onChange={(e) => searchItems(e.target.value)}
+            />
 
-        <Button type="primary" className="staffs-add">
-          Add employee
-        </Button>
-      </div>
-      <div className="staffs-info">
-        <StaffDetails data={users} />
-        {console.log(users)}
-      </div>
+            <Button type="primary" className="staffs-add">
+              Add employee
+            </Button>
+          </div>
+          <div className="staffs-info">
+            <StaffDetails data={users} />
+          </div>
+        </div>
+      ) : (
+        <div className="spin-container">
+          <Spin />
+        </div>
+      )}
     </div>
   );
-};
+}
 
 export async function getStaticProps() {
   const res = await fetch("http://localhost:3000/api/employee");
@@ -108,7 +131,7 @@ export async function getStaticProps() {
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every 10 seconds
-    revalidate: 10, // In seconds
+    revalidate: 1, // In seconds
   };
 }
-export default Staffs;
+// export default Staffs;

@@ -11,16 +11,24 @@ export default async function handler(req, res) {
 
   if (method === "GET") {
     try {
-      const product = await Employee.find();
-      res.status(200).json(product);
+      const employee = await Employee.find();
+      res.status(200).json(employee);
     } catch (error) {
       res.status(500).json(error);
     }
   }
   if (method === "POST") {
     try {
-      const product = await Employee.create(req.body);
-      res.status(201).json(product);
+      const employee = await Employee.create(req.body);
+      res.status(201).json(employee);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  }
+  if (method === "PUT") {
+    try {
+      const employee = await Employee.findOne(req.body);
+      res.status(201).json(employee);
     } catch (error) {
       res.status(500).json(error);
     }
