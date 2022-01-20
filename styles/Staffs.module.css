@@ -1,0 +1,29 @@
+.staffs {
+  width: 90%;
+  margin-top: 2%;
+  margin-left: 5%;
+}
+.staffsControl {
+  margin: 2% 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.staffsControl button {
+  /* margin-right: 10%; */
+}
+.staffsControl input {
+  /* margin-right: 10%; */
+  width: 80vw;
+}
+.staffsSearch {
+  border: 1px solid #505050;
+  padding: 2px 2px;
+  align-items: center;
+}
+.staffsSearch input {
+  border: none;
+}
+.staffsSearch input :focus {
+  border: none;
+}

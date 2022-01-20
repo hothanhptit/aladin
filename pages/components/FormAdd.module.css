@@ -1,0 +1,39 @@
+.addTitle {
+  /* text-align: center; */
+  font-weight: 500;
+  font-size: 32px;
+  padding: 16px;
+  margin-left: 32vw;
+}
+.formAdd {
+  /* width: 80vw; */
+  margin-left: 10vw;
+  padding: 16px;
+  /* align-items: center; */
+}
+
+.context {
+  width: 100%;
+  position: absolute;
+  top: 8vh;
+  color: #fff;
+  /* z-index: 100; */
+}
+.avatar {
+  padding-left: 15vw;
+}
+/* .loginTitle{
+        font-size: 32px;
+        font-weight: 500;
+        text-align: center;
+        padding: 32px;
+        color: black;
+        background: transparent;
+    }
+    */
+
+.editTitle {
+  /* margin-left: 18vw; */
+  padding: 1vh 28vw;
+  /* padding: ; */
+}

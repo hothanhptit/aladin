@@ -23,7 +23,7 @@ const Footer = () => {
               src="/logo.png"
               alt="logo"
               width={250}
-              height={200}
+              height={220}
             />
           </div>
         </Col>
@@ -47,13 +47,19 @@ const Footer = () => {
                   </a>
                 </Link>
                 <Link href="/" passHref>
-                  <a><LinkedinOutlined /></a>
+                  <a>
+                    <LinkedinOutlined />
+                  </a>
                 </Link>
                 <Link href="/" passHref>
-                  <a><TwitterOutlined /></a>
+                  <a>
+                    <TwitterOutlined />
+                  </a>
                 </Link>
                 <Link href="/" passHref>
-                  <a><WhatsAppOutlined /></a>
+                  <a>
+                    <WhatsAppOutlined />
+                  </a>
                 </Link>
               </Space>
             </div>
@@ -61,12 +67,20 @@ const Footer = () => {
             <h5>
               <Link href="mailto:support@aladintech.co" passHref>
                 <span>
-                  <a><MailOutlined /> Email: support@aladintech.co</a>
+                  <span className={styles.icon}>
+                    <a>
+                      <MailOutlined />
+                    </a>
+                  </span>
+                  Email: support@aladintech.co
                 </span>
               </Link>
             </h5>
             <h5>
-              <PhoneOutlined /> Phone: 0988 985 247
+              <span className={styles.icon}>
+                <PhoneOutlined />
+              </span>
+              Phone: 0988 985 247
             </h5>
           </div>
         </Col>
@@ -75,16 +89,24 @@ const Footer = () => {
             <h3 className={styles.title}>Infomation</h3>
 
             <h5>
-              <HomeOutlined /> Tầng 4, Tòa nhà Văn phòng HH1 Meco Complex, ngõ
-              102 Trường Chinh, P. Phương Mai, Q. Đống Đa, TP. Hà Nội.
+              <span className={styles.icon}>
+                <HomeOutlined />
+              </span>
+              Tầng 4, Tòa nhà Văn phòng HH1 Meco Complex, ngõ 102 Trường Chinh,
+              P. Phương Mai, Q. Đống Đa, TP. Hà Nội.
             </h5>
             <h5>
-              <HomeOutlined /> Địa chỉ đăng ký kinh doanh: Số 89/34, Vĩnh Tuy,
-              Hai Bà Trưng, Hà Nội
+              <span className={styles.icon}>
+                <HomeOutlined />
+              </span>
+              Địa chỉ đăng ký kinh doanh: Số 89/34, Vĩnh Tuy, Hai Bà Trưng, Hà
+              Nội
             </h5>
             <h5>
-              <CopyrightCircleOutlined /> Aladin Technology Company, Copyright
-              @2022
+              <span className={styles.icon}>
+                <CopyrightCircleOutlined />
+              </span>
+              Aladin Technology Company, Copyright @2022
             </h5>
           </div>
         </Col>

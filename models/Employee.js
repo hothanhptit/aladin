@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+// const { Schema } = mongoose;
 
 const EmployeesSchema = new mongoose.Schema(
   {
@@ -33,6 +34,7 @@ const EmployeesSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
+    // userID: [{ type: Schema.Types.ObjectId, ref: "User" }],
   },
   { timestamps: true }
 );

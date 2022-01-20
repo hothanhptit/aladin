@@ -4,9 +4,8 @@ import Employee from "../../../models/Employee";
 import dbConnect from "../../../util/mongo";
 
 export default async function handler(req, res) {
-  const {
-    method
-  } = req;
+  const { method } = req;
+
   dbConnect();
 
   if (method === "GET") {
@@ -27,7 +26,10 @@ export default async function handler(req, res) {
   }
   if (method === "PUT") {
     try {
-      const employee = await Employee.findOne(req.body);
+      const employee = await Employee.updateOne(
+        { username: req.body.username },
+        req.body
+      );
       res.status(201).json(employee);
     } catch (error) {
       res.status(500).json(error);

@@ -4,18 +4,13 @@ import Employee from "../../../models/Employee";
 import dbConnect from "../../../util/mongo";
 
 export default async function handler(req, res) {
-  const {
-    method,
-    query: { id },
-  } = req;
-  // const { username } = req.body;
+  const { method, body } = req;
+
   dbConnect();
 
-  //
-
-  if (method === "GET") {
+  if (method === "POST") {
     try {
-      const employee = await Employee.findOne({_id: id});
+      const employee = await Employee.findById({_id: body.employeeID});
       res.status(200).json(employee);
     } catch (error) {
       res.status(500).json(error);
@@ -23,15 +18,11 @@ export default async function handler(req, res) {
   }
   if (method === "PUT") {
     try {
-      const employee = await Employee.updateOne(req.body);
-      res.status(201).json(employee);
-    } catch (error) {
-      res.status(500).json(error);
-    }
-  }
-  if (method === "DELETE") {
-    try {
-      const employee = await Employee.deleteOne({_id: id});
+      const employee = await Employee.updateOne(
+        { username: req.body.username },
+        req.body
+      );
+      console.log(req.body);
       res.status(201).json(employee);
     } catch (error) {
       res.status(500).json(error);

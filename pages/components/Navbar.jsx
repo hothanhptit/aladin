@@ -6,15 +6,22 @@
 //   SettingOutlined,
 // } from "@ant-design/icons";
 import Link from "next/link";
-import Image from "next/image";
 import { useContext } from "react";
 import { Store } from "../../util/store";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-// import Modal from "antd/lib/modal/Modal";
-// import Login from "./Login";
-
-// const { SubMenu } = Menu;
+import styles from "./Navbar.module.css";
+import {
+  AuditOutlined,
+  CodeOutlined,
+  HomeOutlined,
+  LoginOutlined,
+  LogoutOutlined,
+  PhoneOutlined,
+  TeamOutlined,
+  UserAddOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 
 const Navbar = () => {
   // eslint-disable-next-line no-unused-vars
@@ -44,63 +51,113 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="menu">
-        <div className="left-menu">
-          <span className="logo">
+      <div className={styles.menu}>
+        <div className={styles.leftMenu}>
+          {/* <span className="logo">
             <Image
               src="/logo.png"
               alt="Picture of the author"
               width={60}
               height={52}
             />
-            <Link href="/">
-              <a>HaoHanTeam</a>
-            </Link>
-          </span>
+          </span> */}
           <Link href={"/"}>
-            <a>Services</a>
+            <a>
+              <span className={styles.icon}>
+                <HomeOutlined />
+              </span>
+              <span className={styles.text}>Home</span>
+            </a>
           </Link>
           <Link href={"/"}>
-            <a>Recruitment</a>
+            <a>
+              <span className={styles.icon}>
+                <CodeOutlined />
+              </span>
+              <span className={styles.text}>Services</span>
+            </a>
           </Link>
           <Link href={"/"}>
-            <a>Contact us</a>
+            <a>
+              <span className={styles.icon}>
+                <AuditOutlined />
+              </span>
+              <span className={styles.text}>Recruitment</span>
+            </a>
+          </Link>
+          <Link href={"/"}>
+            <a>
+              <span className={styles.icon}>
+                <PhoneOutlined />
+              </span>
+              <span className={styles.text}>Contact us</span>
+            </a>
           </Link>
           {userInfo ? (
             <Link href={"/staffs"}>
-              <a>Staffs</a>
+              <a>
+                <span className={styles.icon}>
+                  <TeamOutlined />
+                </span>
+                <span className={styles.text}>Staffs</span>
+              </a>
             </Link>
           ) : null}
         </div>
-        <div className="right-menu">
+        <div className={styles.rightMenu}>
           {userInfo ? (
             <div>
-              <button className="login-btn">
-                <Link href="/myprofile">
-                  <a>Hi, {userInfo.username}</a>
+              <button className={styles.loginBtn}>
+                <Link href={"/myprofile"}>
+                  <a>
+                    <span className={styles.icon}>
+                      <UserOutlined />
+                    </span>
+                    <span className={styles.text}>
+                      {userInfo.username}&apos;s profile
+                    </span>
+                  </a>
                   {/* <a>Hi</a> */}
                 </Link>
               </button>
-              <button className="sign-up-btn" onClick={logoutHandler}>
-                <Link href="/">Logout</Link>
+              <button className={styles.signUpBtn} onClick={logoutHandler}>
+                <Link href={"/"}>
+                  <a>
+                    <span className={styles.icon}>
+                      <LogoutOutlined />
+                    </span>
+                    <span className={styles.text}>Logout</span>
+                  </a>
+                </Link>
               </button>
             </div>
           ) : (
             <div>
-              <button className="login-btn">
-                <Link href="/login">
-                  <a>Login</a>
+              <button className={styles.loginBtn}>
+                <Link href={"/login"}>
+                  <a>
+                    <span className={styles.icon}>
+                      <LoginOutlined />
+                    </span>
+                    <span className={styles.text}>Login</span>
+                  </a>
                 </Link>
               </button>
-              <button className="sign-up-btn">
-                <Link href="/register">
-                  <a>Sign up</a>
+              <button className={styles.signUpBtn}>
+                <Link href={"/register"}>
+                  <a>
+                    <span className={styles.icon}>
+                      <UserAddOutlined />
+                    </span>
+                    <span className={styles.text}>Register</span>
+                  </a>
                 </Link>
               </button>
             </div>
           )}
         </div>
       </div>
+      {/* <br className={styles.breakLine}/> */}
     </div>
   );
 };

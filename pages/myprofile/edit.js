@@ -1,33 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Form, Input, Button, DatePicker, Avatar } from "antd";
 import axios from "axios";
-// import styles from "../../styles/user.module.css";
-import { Avatar, Button, DatePicker, Form, Input } from "antd";
 import styles from "../components/FormAdd.module.css";
+import { Store } from "../../util/store";
 import moment from "moment";
+import { useAlert } from 'react-alert'
 
-const Employee = ({ employee }) => {
+const DATE_FORMAT = "DD/MM/YYYY";
+
+export default function FormEdit() {
+  const alert = useAlert();
   const [file, setFile] = useState(null);
-  // const router = useRouter();
   // eslint-disable-next-line no-unused-vars
-  // const { state, dispatch } = useContext(Store);
-  // const { userInfo } = state;
-  // const [prevUserInfo, setPrevUserInfo] = useState([]);
-  // const [avatar, setAvatar] = useState("");
+  const { state, dispatch } = useContext(Store);
+  const { userInfo } = state;
+  const [prevUserInfo, setPrevUserInfo] = useState([]);
+  // eslint-disable-next-line no-unused-vars
+  const [avatar, setAvatar] = useState("");
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     await axios
-  //       .post("/api/employee/edit", { employeeID: userInfo?.employeeID })
-  //       .then((res) => {
-  //         setPrevUserInfo(res.data);
-  //         // console.log(prevUserInfo)
-  //       });
-  //   };
-  //   fetchData();
-  //   setAvatar(prevUserInfo.img);
-  //   // eslint-disable-next-line no-undef
-  //   // Promise.all([fetchData(), setAvatar(prevUserInfo.img)]);
-  // }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios
+        .post("/api/employee/edit", { employeeID: userInfo?.employeeID })
+        .then((res) => {
+          setPrevUserInfo(res.data);
+          // console.log(prevUserInfo)
+        });
+    };
+    fetchData();
+    setAvatar(prevUserInfo.img);
+    // eslint-disable-next-line no-undef
+    // Promise.all([fetchData(), setAvatar(prevUserInfo.img)]);
+  }, [prevUserInfo.img]);
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
@@ -45,8 +49,8 @@ const Employee = ({ employee }) => {
     // const formatDob = moment(new Date(values.dob._d), moment.ISO_8601).format("L");
     const updateUser = {
       name: values.name,
-      username: employee.username,
-      img: returnFromCloudinary.data.url,
+      username: userInfo.username,
+      img: returnFromCloudinary?.data.url,
       joined: values.joined,
       phonenumber: values.phone,
       email: values.email,
@@ -56,6 +60,7 @@ const Employee = ({ employee }) => {
       .put("/api/employee/edit", updateUser)
       .then(function (response) {
         console.log(response);
+        alert.show("Edit Successed!")
       })
       .catch(function (error) {
         console.log(error);
@@ -76,12 +81,13 @@ const Employee = ({ employee }) => {
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           fields={[
-            { name: ["name"], value: employee.name },
-            { name: ["email"], value: employee.email },
+            { name: ["name"], value: prevUserInfo.name },
+            { name: ["email"], value: prevUserInfo.email },
             // { name: ["avatar"], value: prevUserInfo.img },
-            { name: ["phone"], value: employee.phonenumber },
+            { name: ["phone"], value: prevUserInfo.phonenumber },
           ]}
         >
+          <div className={styles.addTitle}>Edit your profile</div>
           <Form.Item label="Name" name="name" rules={[{ required: true }]}>
             <Input value="{prevUserInfo.name}" />
           </Form.Item>
@@ -93,25 +99,27 @@ const Employee = ({ employee }) => {
           >
             <Input type="file" onChange={(e) => setFile(e.target.files[0])} />
           </Form.Item>
-          <Form.Item>
-            <div className={styles.avatar}>
-              <Avatar
-                src={employee.img}
-                alt="avatar"
-                size={{
-                  xs: 24,
-                  sm: 32,
-                  md: 40,
-                  lg: 64,
-                  xl: 80,
-                  xxl: 100,
-                }}
-                // width={150}
-                // height={150}
-                styles={{ width: 64 }}
-              />
-            </div>
-          </Form.Item>
+          {prevUserInfo ? (
+            <Form.Item>
+              <div className={styles.avatar}>
+                <Avatar
+                  src={prevUserInfo.img}
+                  alt="avatar"
+                  size={{
+                    xs: 24,
+                    sm: 32,
+                    md: 40,
+                    lg: 64,
+                    xl: 80,
+                    xxl: 100,
+                  }}
+                  // width={150}
+                  // height={150}
+                  styles={{ width: 64 }}
+                />
+              </div>
+            </Form.Item>
+          ) : null}
           {/* {avatar ? (
             <Form.Item>
               <div className={styles.avatar}>
@@ -145,47 +153,30 @@ const Employee = ({ employee }) => {
             label="Date Of Birth"
             rules={[{ required: true }]}
           >
-            <DatePicker defaultValue={moment(employee.dob)} />
+            <DatePicker defaultValue={moment(prevUserInfo.dob)} format={DATE_FORMAT} />
           </Form.Item>
           <Form.Item
             name="joined"
             label="Join date"
             rules={[{ required: true }]}
           >
-            <DatePicker defaultValue={moment(employee.joined)} />
+            <DatePicker defaultValue={moment(prevUserInfo.joined)} format={DATE_FORMAT} />
           </Form.Item>
           <Form.Item name="email" label="Email" rules={[{ required: true }]}>
-            <Input />
+            <Input value={prevUserInfo.email} />
           </Form.Item>
           <Form.Item
             name="phone"
             label="Phone Number"
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input value={prevUserInfo.phonenumber} />
           </Form.Item>
-          <div className={styles.editTitle}>
-            You do not have permission to edit here.
-          </div>
           <Form.Item label="Send">
-            <Button htmlType="submit" disabled>
-              Submit
-            </Button>
+            <Button htmlType="submit">Submit</Button>
           </Form.Item>
         </Form>
       </div>
     </div>
   );
-};
-export default Employee;
-
-export const getServerSideProps = async ({ params }) => {
-  const res = await axios.get(
-    `http://localhost:3000/api/employee/${params.id}`
-  );
-  return {
-    props: {
-      employee: res.data,
-    },
-  };
-};
+}

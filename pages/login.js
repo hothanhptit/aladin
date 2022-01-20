@@ -1,4 +1,5 @@
 import styles from "../styles/Login.module.css";
+
 import { Form, Input, Button } from "antd";
 import axios from "axios";
 // import Image from "next/image";
@@ -24,10 +25,18 @@ const Login = () => {
         username,
         password,
       });
-      // console.log(data);
+
       dispatch({ type: "USER_LOGIN", payload: data });
-      Cookies.set("userInfo",  data);
-      localStorage.setItem("username", username);
+      Cookies.set("userInfo", JSON.stringify(data));
+
+      localStorage.setItem("userInfo", JSON.stringify(data));
+
+      const userIf = localStorage.getItem("userInfo");
+      console.log("test", JSON.parse(userIf));
+
+      // const test = Cookies.get("userInfo")
+      // console.log(test, "asd");
+      // console.log(data);
       router.push(redirect || "/");
     } catch (error) {
       console.log(error);
@@ -50,6 +59,7 @@ const Login = () => {
         autoComplete="on"
         className={styles.context}
       >
+        <div className={styles.loginTitle}>Login</div>
         <Form.Item
           label="Username"
           name="username"

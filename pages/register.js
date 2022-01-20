@@ -26,9 +26,12 @@ const Login = () => {
           password,
         });
         dispatch({ type: "USER_LOGIN", payload: data });
-        Cookies.set("userInfo", data);
+        Cookies.set("userInfo", JSON.stringify(data));
+
+        localStorage.setItem("userInfo", JSON.stringify(data));
+        
+        // Cookies.set("userInfo", JSON.stringify(data), { HttpOnly: true });
         router.push(redirect || "/");
-        localStorage.setItem("username", username);
       } catch (error) {
         alert("Username already taken!", error);
       }
@@ -52,6 +55,7 @@ const Login = () => {
         autoComplete="on"
         className={styles.context}
       >
+        <div className={styles.loginTitle}>Register</div>
         <Form.Item
           label="Username"
           name="username"

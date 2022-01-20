@@ -3,12 +3,13 @@ import React, { useEffect } from "react";
 import { Button, Space, Table, Avatar, Input } from "antd";
 import { useState } from "react";
 import Link from "next/link";
-// import { useAlert } from "react-alert";
+import axios from "axios";
+import { useAlert } from "react-alert";
 import moment from "moment";
 import styles from "../../styles/Staffs.module.css";
 
-const StaffDetails = ({ data }) => {
-  // const alert = useAlert();
+const ADMINStaffDetails = ({ data }) => {
+  const alert = useAlert();
   // const [listUser, setListUser] = useState(data);
   const [filteredResults, setFilteredResults] = useState(data);
   const [searchTerm, setSearchTerm] = useState("");
@@ -105,31 +106,28 @@ const StaffDetails = ({ data }) => {
       render: (text) => (
         <Space size="middle">
           <Link href={decodeURIComponent(`/staff/${text}`)} passHref>
-            <Button type="primary" disable>
-              View
-            </Button>
+            <Button type="primary">View</Button>
           </Link>
           <Button
-            type="ghost"
-            // onClick={async () => {
-            //   await axios
-            //     .delete(decodeURIComponent(`/api/employee/${text}`), {
-            //       id: text,
-            //     })
-            //     .then((res) => {
-            //       console.log(res);
-            //       alert.show("Delete Successed!");
-            //       setFilteredResults((listUser) => {
-            //         return listUser.filter((user, _id) => {
-            //           return _id !== text;
-            //         });
-            //       });
-            //     })
-            //     .catch((err) => {
-            //       console.log(err);
-            //     });
-            // }}
-            disable={true }
+            type="danger"
+            onClick={async () => {
+              await axios
+                .delete(decodeURIComponent(`/api/employee/${text}`), {
+                  id: text,
+                })
+                .then((res) => {
+                  console.log(res);
+                  alert.show("Delete Successed!");
+                  setFilteredResults((listUser) => {
+                    return listUser.filter((user, _id) => {
+                      return _id !== text;
+                    });
+                  });
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            }}
           >
             Delete
           </Button>
@@ -148,7 +146,7 @@ const StaffDetails = ({ data }) => {
             // eslint-disable-next-line no-undef
             onChange={(e) => handleChange(e)}
           />
-          <Button type="primary" className={styles.staffsAdd} disabled>
+          <Button type="primary" className={styles.staffsAdd}>
             Add employee
           </Button>
         </div>
@@ -167,4 +165,4 @@ const StaffDetails = ({ data }) => {
   );
 };
 
-export default StaffDetails;
+export default ADMINStaffDetails;

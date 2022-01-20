@@ -10,8 +10,14 @@
     /* padding-top: 2%; */
     background: #F4F9F9;
 }
+.footer a {
+    color: #303030;
+}
 .link {
     margin-bottom: 4px;
+}
+.icon {
+    margin-right: 8px;
 }
 .title {
     font-weight: 700;
