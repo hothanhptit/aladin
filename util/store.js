@@ -13,6 +13,9 @@ export const Store = createContext();
 // }
 const initialState = {
   userInfo: Cookies.get("userInfo") ? Cookies.get("userInfo") : null,
+  // userInfo: localStorage.getItem(JSON.stringify("userInfo"))
+  //   ? localStorage.getItem(JSON.stringify("userInfo"))
+  //   : null,
   // localStorage.getItem("userInfo")
   //   ? JSON.parse(localStorage.getItem("userInfo"))
   //   : null,

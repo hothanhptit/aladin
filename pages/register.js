@@ -5,8 +5,10 @@ import { Store } from "../util/store";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import Cookies from "js-cookie";
+import { useAlert } from "react-alert";
 
 const Login = () => {
+  const alert = useAlert()
   const router = useRouter();
   const redirect = router.query;
   const { state, dispatch } = useContext(Store);
@@ -33,10 +35,10 @@ const Login = () => {
         // Cookies.set("userInfo", JSON.stringify(data), { HttpOnly: true });
         router.push(redirect || "/");
       } catch (error) {
-        alert("Username already taken!", error);
+        alert.show("Username already taken!", error);
       }
     } else {
-      alert("Register failed, check your confirm password!");
+      alert.show("Register failed, check your confirm password!");
     }
   };
 

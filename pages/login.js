@@ -7,8 +7,10 @@ import { Store } from "../util/store";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import Cookies from "js-cookie";
+import { useAlert } from "react-alert";
 
 const Login = () => {
+  const alert = useAlert();
   const router = useRouter();
   const redirect = router.query;
   const { state, dispatch } = useContext(Store);
@@ -40,7 +42,7 @@ const Login = () => {
       router.push(redirect || "/");
     } catch (error) {
       console.log(error);
-      alert("Login failed, username or password incorrect!");
+      alert.show("Login failed, username or password incorrect!");
     }
   };
 
