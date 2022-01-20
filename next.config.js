@@ -3,5 +3,5 @@ module.exports = {
   images: {
     domains: ['image.freepik.com',"res.cloudinary.com"],
   },
-  distDir: 'build',
+  // distDir: 'build',
 }
