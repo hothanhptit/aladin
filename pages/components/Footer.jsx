@@ -92,8 +92,10 @@ const Footer = () => {
               <span className={styles.icon}>
                 <HomeOutlined />
               </span>
-              Tầng 4, Tòa nhà Văn phòng HH1 Meco Complex, ngõ 102 Trường Chinh,
-              P. Phương Mai, Q. Đống Đa, TP. Hà Nội.
+              <span>
+                Tầng 4, Tòa nhà Văn phòng HH1 Meco Complex, ngõ 102 Trường
+                Chinh, P. Phương Mai, Q. Đống Đa, TP. Hà Nội.
+              </span>
             </h5>
             <h5>
               <span className={styles.icon}>

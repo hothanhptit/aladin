@@ -50,7 +50,7 @@ export default function FormEdit() {
     const updateUser = {
       name: values.name,
       username: userInfo.username,
-      img: returnFromCloudinary?.data.url,
+      img: returnFromCloudinary?.data.url ? prevUserInfo.img : null,
       joined: values.joined,
       phonenumber: values.phone,
       email: values.email,

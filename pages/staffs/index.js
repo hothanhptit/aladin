@@ -13,6 +13,9 @@ export default function Staffs({ users }) {
 
   return (
     <div className={styles.staffs}>
+      <div className={styles.title}>
+          Staffs infomation
+      </div>
       {userInfo ? (
         userInfo.isAdmin ? (
           <div className={styles.staffsInfo}>

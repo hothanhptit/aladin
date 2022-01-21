@@ -27,3 +27,9 @@
 .staffsSearch input :focus {
   border: none;
 }
+.title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 400;
+
+}

@@ -63,10 +63,16 @@ const Navbar = () => {
           </span> */}
           <Link href={"/"}>
             <a>
-              <span className={styles.icon}>
+              <span
+                className={router.pathname == "/" ? styles.active : styles.icon}
+              >
                 <HomeOutlined />
               </span>
-              <span className={styles.text}>Home</span>
+              <span
+                className={router.pathname == "/" ? styles.active : styles.text}
+              >
+                Home
+              </span>
             </a>
           </Link>
           <Link href={"/"}>
@@ -96,10 +102,20 @@ const Navbar = () => {
           {userInfo ? (
             <Link href={"/staffs"}>
               <a>
-                <span className={styles.icon}>
+                <span
+                  className={
+                    router.pathname == "/staffs" ? styles.active : styles.icon
+                  }
+                >
                   <TeamOutlined />
                 </span>
-                <span className={styles.text}>Staffs</span>
+                <span
+                  className={
+                    router.pathname == "/staffs" ? styles.active : styles.icon
+                  }
+                >
+                  Staffs
+                </span>
               </a>
             </Link>
           ) : null}
@@ -110,10 +126,24 @@ const Navbar = () => {
               <button className={styles.loginBtn}>
                 <Link href={"/myprofile"}>
                   <a>
-                    <span className={styles.icon}>
+                    <span
+                      className={
+                        router.pathname == "/myprofile/edit" ||
+                        router.pathname == "/myprofile/add"
+                          ? styles.active
+                          : styles.icon
+                      }
+                    >
                       <UserOutlined />
                     </span>
-                    <span className={styles.text}>
+                    <span
+                      className={
+                        router.pathname == "/myprofile/edit" ||
+                        router.pathname == "/myprofile/add"
+                          ? styles.active
+                          : styles.icon
+                      }
+                    >
                       {userInfo.username}&apos;s profile
                     </span>
                   </a>
@@ -136,20 +166,48 @@ const Navbar = () => {
               <button className={styles.loginBtn}>
                 <Link href={"/login"}>
                   <a>
-                    <span className={styles.icon}>
+                    <span
+                      className={
+                        router.pathname == "/login"
+                          ? styles.active
+                          : styles.icon
+                      }
+                    >
                       <LoginOutlined />
                     </span>
-                    <span className={styles.text}>Login</span>
+                    <span
+                      className={
+                        router.pathname == "/login"
+                          ? styles.active
+                          : styles.loginBtn
+                      }
+                    >
+                      Login
+                    </span>
                   </a>
                 </Link>
               </button>
-              <button className={styles.signUpBtn}>
+              <button className={styles.loginBtn}>
                 <Link href={"/register"}>
                   <a>
-                    <span className={styles.icon}>
+                    <span
+                      className={
+                        router.pathname == "/register"
+                          ? styles.active
+                          : styles.icon
+                      }
+                    >
                       <UserAddOutlined />
                     </span>
-                    <span className={styles.text}>Register</span>
+                    <span
+                      className={
+                        router.pathname == "/register"
+                          ? styles.active
+                          : styles.loginBtn
+                      }
+                    >
+                      Register
+                    </span>
                   </a>
                 </Link>
               </button>

@@ -1,12 +1,9 @@
 // import Navbar from "./components/Navbar";
 import { Card, Row, Col } from "antd";
-import {
-  CodeOutlined,
-  CheckCircleOutlined,
-} from "@ant-design/icons";
+import { CodeOutlined, CheckCircleOutlined } from "@ant-design/icons";
 // import { useState } from "react";
 import Head from "next/head";
-// import Image from "next/image";
+import Image from "next/image";
 
 const Homepage = () => {
   return (
@@ -28,7 +25,7 @@ const Homepage = () => {
         </div>
         <div className="d2">
           <span className="hero-logo">
-            <CodeOutlined />
+            <CodeOutlined style={{color: "green"}}/>
             {/* >_ */}
           </span>
           <span> Build </span>
@@ -52,6 +49,65 @@ const Homepage = () => {
       </div>
       <div>
         <div className="wwd">
+          <div className="slider">
+            <div className="slide-track">
+              <div className="slide">
+                <span>OutSourcing</span>
+              </div>
+              <div className="slide">
+                <span>VAS</span>
+              </div>
+              <div className="slide">
+                <span>Telecom</span>
+              </div>
+              <div className="slide">
+                <span>Production</span>
+              </div>
+              <div className="slide">
+                <span>Aladintech</span>
+              </div>
+              <div className="slide">
+                <span>About us</span>
+              </div>
+
+              <div className="slide">
+                <span>OutSourcing</span>
+              </div>
+              <div className="slide">
+                <span>VAS</span>
+              </div>
+              <div className="slide">
+                <span>Telecom</span>
+              </div>
+              <div className="slide">
+                <span>Production</span>
+              </div>
+              <div className="slide">
+                <span>Aladintech</span>
+              </div>
+              <div className="slide">
+                <span>About us</span>
+              </div>
+              <div className="slide">
+                <span>OutSourcing</span>
+              </div>
+              <div className="slide">
+                <span>VAS</span>
+              </div>
+              <div className="slide">
+                <span>Telecom</span>
+              </div>
+              <div className="slide">
+                <span>Production</span>
+              </div>
+              <div className="slide">
+                <span>Aladintech</span>
+              </div>
+              <div className="slide">
+                <span>About us</span>
+              </div>
+            </div>
+          </div>
           <p className="wwd-text">Find more about</p>
           <h1>What we do</h1>
           <div className="wwd-card-wrapper">
@@ -61,42 +117,40 @@ const Homepage = () => {
                   // title="Out source"
                   bordered={false}
                   cover={
-                    <img
-                      // width={250}
-                      // height={250}
+                    <Image
+                      width={400}
+                      height={400}
                       alt=""
                       src="https://thumbs.dreamstime.com/b/outsourcing-outline-icon-thin-line-concept-element-customer-service-icons-collection-creative-outsourcing-icon-mobile-158875806.jpg"
                     />
                   }
-                >
-                  Outsouceing
-                </Card>
+                ></Card>
               </Col>
               <Col span={8}>
                 <Card
                   bordered={false}
                   cover={
-                    <img
+                    <Image
+                      width={400}
+                      height={400}
                       alt=""
                       src="https://thumbs.dreamstime.com/b/outsourcing-outline-icon-thin-line-concept-element-customer-service-icons-collection-creative-outsourcing-icon-mobile-158875806.jpg"
                     />
                   }
-                >
-                  VAS
-                </Card>
+                ></Card>
               </Col>
               <Col span={8}>
                 <Card
                   bordered={false}
                   cover={
-                    <img
+                    <Image
+                      width={400}
+                      height={400}
                       alt=""
                       src="https://thumbs.dreamstime.com/b/outsourcing-outline-icon-thin-line-concept-element-customer-service-icons-collection-creative-outsourcing-icon-mobile-158875806.jpg"
                     />
                   }
-                >
-                  Platform
-                </Card>
+                ></Card>
               </Col>
             </Row>
           </div>
@@ -115,40 +169,40 @@ const Homepage = () => {
                   // title="Out source"
                   bordered={false}
                   cover={
-                    <img
+                    <Image
+                      width={400}
+                      height={400}
                       alt=""
                       src="https://thumbs.dreamstime.com/b/outsourcing-outline-icon-thin-line-concept-element-customer-service-icons-collection-creative-outsourcing-icon-mobile-158875806.jpg"
                     />
                   }
-                >
-                  Outsouceing
-                </Card>
+                ></Card>
               </Col>
               <Col span={8}>
                 <Card
                   bordered={false}
                   cover={
-                    <img
+                    <Image
+                      width={400}
+                      height={400}
                       alt=""
                       src="https://thumbs.dreamstime.com/b/outsourcing-outline-icon-thin-line-concept-element-customer-service-icons-collection-creative-outsourcing-icon-mobile-158875806.jpg"
                     />
                   }
-                >
-                  VAS
-                </Card>
+                ></Card>
               </Col>
               <Col span={8}>
                 <Card
                   bordered={false}
                   cover={
-                    <img
+                    <Image
+                      width={400}
+                      height={400}
                       alt=""
                       src="https://thumbs.dreamstime.com/b/outsourcing-outline-icon-thin-line-concept-element-customer-service-icons-collection-creative-outsourcing-icon-mobile-158875806.jpg"
                     />
                   }
-                >
-                  Platform
-                </Card>
+                ></Card>
               </Col>
             </Row>
           </div>

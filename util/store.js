@@ -23,6 +23,7 @@ const initialState = {
   // use localstorage ?
   // userUpdated: false,
   // userDetails: null
+  //theme : false
 };
 
 function reducer(state, action) {
@@ -35,6 +36,8 @@ function reducer(state, action) {
     //     return {...state, userDetails: action.payload}
     case "USER_ADD":
       return { ...state, userInfo: action.payload };
+    //case "TOGGLE_THME":
+      // return theme = !theme
     default:
       return state;
   }
