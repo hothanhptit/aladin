@@ -160,8 +160,8 @@ const Homepage = () => {
           <h3 className="why-us-title">
             Why choose us <CheckCircleOutlined />
           </h3>
-          <h3>This is some text.</h3>
-          <p>Just testing.</p>
+          {/* <h3>This is some text.</h3>
+          <p>Just testing.</p> */}
           <div className="wwd-card-wrapper">
             <Row gutter={16}>
               <Col span={8}>

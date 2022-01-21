@@ -4,7 +4,8 @@ import axios from "axios";
 import styles from "../components/FormAdd.module.css";
 import { Store } from "../../util/store";
 import moment from "moment";
-import { useAlert } from 'react-alert'
+import { useAlert } from "react-alert";
+import Image from "next/image";
 
 const DATE_FORMAT = "DD/MM/YYYY";
 
@@ -60,7 +61,7 @@ export default function FormEdit() {
       .put("/api/employee/edit", updateUser)
       .then(function (response) {
         console.log(response);
-        alert.show("Edit Successed!")
+        alert.show("Edit Successed!");
       })
       .catch(function (error) {
         console.log(error);
@@ -68,6 +69,10 @@ export default function FormEdit() {
   };
   return (
     <div>
+      <div className={styles.addTitle}>
+        <Image src="/Employee_U.png" alt="bg-add" width={1600} height={300} />
+        <p className={styles.addTitleText}>Edit infomation</p>
+      </div>
       <div className={styles.formAdd}>
         <Form
           labelCol={{
@@ -87,7 +92,6 @@ export default function FormEdit() {
             { name: ["phone"], value: prevUserInfo.phonenumber },
           ]}
         >
-          <div className={styles.addTitle}>Edit your profile</div>
           <Form.Item label="Name" name="name" rules={[{ required: true }]}>
             <Input value="{prevUserInfo.name}" />
           </Form.Item>
@@ -153,14 +157,20 @@ export default function FormEdit() {
             label="Date Of Birth"
             rules={[{ required: true }]}
           >
-            <DatePicker defaultValue={moment(prevUserInfo.dob)} format={DATE_FORMAT} />
+            <DatePicker
+              defaultValue={moment(prevUserInfo.dob)}
+              format={DATE_FORMAT}
+            />
           </Form.Item>
           <Form.Item
             name="joined"
             label="Join date"
             rules={[{ required: true }]}
           >
-            <DatePicker defaultValue={moment(prevUserInfo.joined)} format={DATE_FORMAT} />
+            <DatePicker
+              defaultValue={moment(prevUserInfo.joined)}
+              format={DATE_FORMAT}
+            />
           </Form.Item>
           <Form.Item name="email" label="Email" rules={[{ required: true }]}>
             <Input value={prevUserInfo.email} />
@@ -176,6 +186,20 @@ export default function FormEdit() {
             <Button htmlType="submit">Submit</Button>
           </Form.Item>
         </Form>
+      </div>
+      <div className={styles.area}>
+        <ul className={styles.circles}>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
       </div>
     </div>
   );

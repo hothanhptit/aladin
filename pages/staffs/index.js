@@ -5,6 +5,7 @@ import ADMINStaffDetails from "../components/ADMINStaffDetails";
 import { Store } from "../../util/store";
 import styles from "../../styles/Staffs.module.css";
 import axios from "axios";
+import Image from "next/image";
 // import axios from "axios";
 
 export default function Staffs({ users }) {
@@ -14,7 +15,7 @@ export default function Staffs({ users }) {
   return (
     <div className={styles.staffs}>
       <div className={styles.title}>
-          Staffs infomation
+         <Image src="/staffs-banner.jpg" atl="staffs-banner" width={1600} height={400}/>
       </div>
       {userInfo ? (
         userInfo.isAdmin ? (

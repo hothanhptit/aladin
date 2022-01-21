@@ -129,7 +129,7 @@ const StaffDetails = ({ data }) => {
             //       console.log(err);
             //     });
             // }}
-            disable={true }
+            disable={true}
           >
             Delete
           </Button>
@@ -162,6 +162,20 @@ const StaffDetails = ({ data }) => {
             size="large"
           ></Table>
         ) : null}
+      </div>
+      <div className={styles.area}>
+        <ul className={styles.circles}>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
       </div>
     </div>
   );

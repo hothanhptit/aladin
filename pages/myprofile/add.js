@@ -5,7 +5,8 @@ import axios from "axios";
 // import moment from "moment";
 import styles from "../components/FormAdd.module.css";
 import { Store } from "../../util/store";
-import { useAlert } from 'react-alert'
+import { useAlert } from "react-alert";
+import Image from "next/image";
 
 const DATE_FORMAT = "DD/MM/YYYY";
 
@@ -54,90 +55,114 @@ export default function FormAdd() {
         const updateUserInfo = userInfo;
         updateUserInfo.employeeID = response.data._id;
         dispatch({ action: "USER_ADD", updateUserInfo });
-        alert.show("Add info successed!")
+        alert.show("Add info successed!");
       })
       .catch(function (error) {
         console.log(error);
       });
   };
   return (
-    <div className={styles.formAdd}>
-      <Form
-        labelCol={{
-          span: 4,
-        }}
-        wrapperCol={{
-          span: 14,
-        }}
-        layout="horizontal"
-        size="default"
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-      >
-        <div className={styles.addTitle}>Add your info</div>
-        <Form.Item label="Name" name="name" rules={[{ required: true }]}>
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Avatar"
-          valuePropName="fileList"
-          extra="Upload avatar here"
-          rules={[{ required: true }]}
+    <div>
+      <div className={styles.addTitle}>
+        <Image src="/Employee_U.png" alt="bg-add" width={1600} height={300} />
+        <p className={styles.addTitleText}>Add infomation</p>
+      </div>
+      <div className={styles.formAdd}>
+        <Form
+          labelCol={{
+            span: 4,
+          }}
+          wrapperCol={{
+            span: 14,
+          }}
+          layout="horizontal"
+          size="default"
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
         >
-          <Input type="file" onChange={(e) => setFile(e.target.files[0])} />
-        </Form.Item>
-        {avatar ? (
-          <Form.Item>
-            <div className={styles.avatar}>
-              <Avatar
-                src={avatar}
-                alt="avatar"
-                size={{
-                  xs: 24,
-                  sm: 32,
-                  md: 40,
-                  lg: 64,
-                  xl: 80,
-                  xxl: 100,
-                }}
-                // width={150}
-                // height={150}
-                styles={{ width: 64 }}
-              />
-            </div>
+
+          <Form.Item label="Name" name="name" rules={[{ required: true }]}>
+            <Input />
           </Form.Item>
-        ) : null}
-        {/* <Form.Item label="Gender">
+          <Form.Item
+            label="Avatar"
+            valuePropName="fileList"
+            extra="Upload avatar here"
+            rules={[{ required: true }]}
+          >
+            <Input type="file" onChange={(e) => setFile(e.target.files[0])} />
+          </Form.Item>
+          {avatar ? (
+            <Form.Item>
+              <div className={styles.avatar}>
+                <Avatar
+                  src={avatar}
+                  alt="avatar"
+                  size={{
+                    xs: 24,
+                    sm: 32,
+                    md: 40,
+                    lg: 64,
+                    xl: 80,
+                    xxl: 100,
+                  }}
+                  // width={150}
+                  // height={150}
+                  styles={{ width: 64 }}
+                />
+              </div>
+            </Form.Item>
+          ) : null}
+          {/* <Form.Item label="Gender">
         <Select>
         <Select.Option value="demo">Male</Select.Option>
         <Select.Option value="demo">Female</Select.Option>
         <Select.Option value="demo">Others</Select.Option>
         </Select>
       </Form.Item> */}
-        <Form.Item
-          name="dob"
-          label="Date Of Birth"
-          rules={[{ required: true }]}
-        >
-          <DatePicker format={DATE_FORMAT} />
-        </Form.Item>
-        <Form.Item name="joined" label="Join date" rules={[{ required: true }]}>
-          <DatePicker format={DATE_FORMAT} />
-        </Form.Item>
-        <Form.Item name="email" label="Email" rules={[{ required: true }]}>
-          <Input />
-        </Form.Item>
-        <Form.Item
-          name="phone"
-          label="Phone Number"
-          rules={[{ required: true }]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item label="Send">
-          <Button htmlType="submit">Submit</Button>
-        </Form.Item>
-      </Form>
+          <Form.Item
+            name="dob"
+            label="Date Of Birth"
+            rules={[{ required: true }]}
+          >
+            <DatePicker format={DATE_FORMAT} />
+          </Form.Item>
+          <Form.Item
+            name="joined"
+            label="Join date"
+            rules={[{ required: true }]}
+          >
+            <DatePicker format={DATE_FORMAT} />
+          </Form.Item>
+          <Form.Item name="email" label="Email" rules={[{ required: true }]}>
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="phone"
+            label="Phone Number"
+            rules={[{ required: true }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item label="Send">
+            <Button htmlType="submit">Submit</Button>
+          </Form.Item>
+        </Form>
+      </div>
+      <div className={styles.area}>
+        <ul className={styles.circles}>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
     </div>
   );
 }

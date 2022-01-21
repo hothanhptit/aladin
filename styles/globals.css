@@ -19,13 +19,16 @@ a {
 * {
   box-sizing: border-box;
 }
-
+.ant-form-item-label > label {
+  font-weight: bold;
+}
 .ant-btn-primary {
   background: #6ecb63 !important;
   border-color: #6ecb63 !important;
 }
 .ant-input {
   border-color: #6ecb63 !important;
+  border-radius: 15px!important;
 }
 .ant-input:hover {
   border-color: #6ecb63 !important;

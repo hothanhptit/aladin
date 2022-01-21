@@ -4,6 +4,7 @@ import axios from "axios";
 import { Avatar, Button, DatePicker, Form, Input } from "antd";
 import styles from "../components/FormAdd.module.css";
 import moment from "moment";
+import Image from "next/image";
 
 const Employee = ({ employee }) => {
   const [file, setFile] = useState(null);
@@ -63,6 +64,10 @@ const Employee = ({ employee }) => {
   };
   return (
     <div>
+      <div className={styles.addTitle}>
+        <Image src="/Employee_U.png" alt="bg-add" width={1600} height={300} />
+        <p className={styles.addTitleText}>Edit infomation</p>
+      </div>
       <div className={styles.formAdd}>
         <Form
           labelCol={{

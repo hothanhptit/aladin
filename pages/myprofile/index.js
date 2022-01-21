@@ -17,7 +17,6 @@ const Myprofile = () => {
   // },[state])
   return (
     <div>
-      {console.log(userInfo)}
       {!userInfo ? <span className="un-available">Not available</span> : null}
     </div>
   );
