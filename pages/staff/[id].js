@@ -186,7 +186,7 @@ export default Employee;
 
 export const getServerSideProps = async ({ params }) => {
   const res = await axios.get(
-    `http://localhost:3000/api/employee/${params.id}`
+    `http://localhost:3001/api/employee/${params.id}`
   );
   return {
     props: {

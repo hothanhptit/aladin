@@ -28,10 +28,12 @@ const Navbar = () => {
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const { userInfo } = state;
+
   function logoutHandler() {
     dispatch({ type: "USER_LOGOUT" });
     Cookies.remove("userInfo");
     router.push("/");
+    localStorage.clear("userInfo");
   }
   // const [current, setCurrent] = useState("");
   // const handleClick = (e) => {
@@ -48,6 +50,12 @@ const Navbar = () => {
   // const handleCancel = () => {
   //   setIsModalVisible(false);
   // };
+  // const userIf = {};
+  // try {
+  //   var userIf = localStorage.getItem("userInfo");
+  // } catch (error) {
+  //   console.log(error);
+  // }
 
   return (
     <div>
@@ -71,32 +79,50 @@ const Navbar = () => {
               <span
                 className={router.pathname == "/" ? styles.active : styles.text}
               >
-                Home
+                <span>Home</span>
               </span>
             </a>
           </Link>
-          <Link href={"/"}>
-            <a>
-              <span className={styles.icon}>
+          <Link href={"/services"}>
+          <a>
+              <span
+                className={router.pathname == "/services" ? styles.active : styles.icon}
+              >
                 <CodeOutlined />
               </span>
-              <span className={styles.text}>Services</span>
+              <span
+                className={router.pathname == "/services" ? styles.active : styles.text}
+              >
+                <span>Services</span>
+              </span>
             </a>
           </Link>
-          <Link href={"/"}>
-            <a>
-              <span className={styles.icon}>
+          <Link href={"/recruitment"}>
+          <a>
+              <span
+                className={router.pathname == "/recruitment" ? styles.active : styles.icon}
+              >
                 <AuditOutlined />
               </span>
-              <span className={styles.text}>Recruitment</span>
+              <span
+                className={router.pathname == "/recruitment" ? styles.active : styles.text}
+              >
+                <span>Recruitment</span>
+              </span>
             </a>
           </Link>
-          <Link href={"/"}>
-            <a>
-              <span className={styles.icon}>
+          <Link href={"/contact"}>
+          <a>
+              <span
+                className={router.pathname == "/contact" ? styles.active : styles.icon}
+              >
                 <PhoneOutlined />
               </span>
-              <span className={styles.text}>Contact us</span>
+              <span
+                className={router.pathname == "/contact" ? styles.active : styles.text}
+              >
+                <span>Contact</span>
+              </span>
             </a>
           </Link>
           {userInfo ? (
@@ -144,13 +170,13 @@ const Navbar = () => {
                           : styles.icon
                       }
                     >
-                      {userInfo.username}&apos;s profile
+                      <span>My profile</span>
+                      {/* {userInfo.username}&apos;s profile */}
                     </span>
                   </a>
-                  {/* <a>Hi</a> */}
                 </Link>
               </button>
-              <button className={styles.signUpBtn} onClick={logoutHandler}>
+              <button className={styles.loginBtn} onClick={logoutHandler}>
                 <Link href={"/"}>
                   <a>
                     <span className={styles.icon}>
@@ -164,7 +190,7 @@ const Navbar = () => {
           ) : (
             <div>
               <button className={styles.loginBtn}>
-                <Link href={"/login"}>
+              <Link href={"/login"}>
                   <a>
                     <span
                       className={
@@ -182,13 +208,13 @@ const Navbar = () => {
                           : styles.loginBtn
                       }
                     >
-                      Login
+                      <span>Login</span>
                     </span>
                   </a>
                 </Link>
               </button>
               <button className={styles.loginBtn}>
-                <Link href={"/register"}>
+              <Link href={"/register"}>
                   <a>
                     <span
                       className={
@@ -206,7 +232,7 @@ const Navbar = () => {
                           : styles.loginBtn
                       }
                     >
-                      Register
+                      <span>Register</span>
                     </span>
                   </a>
                 </Link>

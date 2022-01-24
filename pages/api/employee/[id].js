@@ -8,11 +8,7 @@ export default async function handler(req, res) {
     method,
     query: { id },
   } = req;
-  // const { username } = req.body;
   dbConnect();
-
-  //
-
   if (method === "GET") {
     try {
       const employee = await Employee.findOne({_id: id});

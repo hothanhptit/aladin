@@ -29,12 +29,13 @@ const Login = () => {
       });
 
       dispatch({ type: "USER_LOGIN", payload: data });
+      // Cookies.set("userInfo", JSON.stringify(data), { httpOnly: true });
       Cookies.set("userInfo", JSON.stringify(data));
 
       localStorage.setItem("userInfo", JSON.stringify(data));
 
       const userIf = localStorage.getItem("userInfo");
-      console.log("test", JSON.parse(userIf));
+      console.log("test1", JSON.parse(userIf));
 
       // const test = Cookies.get("userInfo")
       // console.log(test, "asd");

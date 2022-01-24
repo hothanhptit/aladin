@@ -15,7 +15,7 @@ export default function Staffs({ users }) {
   return (
     <div className={styles.staffs}>
       <div className={styles.title}>
-         <Image src="/staffs-banner.jpg" atl="staffs-banner" width={1600} height={400}/>
+         <Image src="/staffs-banner.jpg" alt="" width={1600} height={400}/>
       </div>
       {userInfo ? (
         userInfo.isAdmin ? (
@@ -37,10 +37,10 @@ export default function Staffs({ users }) {
 }
 
 export async function getServerSideProps() {
-  // const res = await axios.get("http://localhost:3000/api/employee");
+  // const res = await axios.get("http://localhost:3001/api/employee");
   // const users = await res.json();
   const res = await axios.get(
-    `http://localhost:3000/api/employee`
+    `http://localhost:3001/api/employee`
   );
   return {
     props: {

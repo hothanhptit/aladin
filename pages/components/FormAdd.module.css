@@ -11,15 +11,20 @@
   text-align: center;
 }
 .formAdd {
-  width: 80vw;
+  width: 70vw;
   margin-top: -40px;
-  margin-left: 10vw;
+  margin-left: 15vw;
   margin-bottom: 4vw;
   padding: 16px;
   /* padding-top: 0; */
   background-color: #F4F9F9;
   border-radius: 40px;
+  /* display: flex; */
+  align-items: center;
   /* align-items: center; */
+}
+.form {
+  padding-left: 8vw;
 }
 
 .context {
@@ -30,7 +35,7 @@
   /* z-index: 100; */
 }
 .avatar {
-  padding-left: 15vw;
+  padding-left: 11vw;
 }
 /* .loginTitle{
         font-size: 32px;
