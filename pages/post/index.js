@@ -9,7 +9,7 @@ const Post = () => {
     name: 'aaaaaaaaaaaa',
   };
   axios
-    .post("/api/posts", post)
+    .post("https://blog-two-umber.vercel.app/api/posts", post)
     .then(function (response) {
       console.log(response);
     })

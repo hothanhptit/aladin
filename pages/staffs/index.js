@@ -40,7 +40,7 @@ export async function getServerSideProps() {
   // const res = await axios.get("http://localhost:3001/api/employee");
   // const users = await res.json();
   const res = await axios.get(
-    `http://localhost:3001/api/employee`
+    `/api/employee`
   );
   return {
     props: {
