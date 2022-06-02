@@ -7,6 +7,10 @@ if (!MONGODB_URI) {
     'Server not found'
   )
 }
+const options = {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+};
 
 /**
  * Global is used here to maintain a cached connection across hot reloads
@@ -27,6 +31,8 @@ async function dbConnect() {
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
     }
 
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
