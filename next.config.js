@@ -7,5 +7,5 @@ module.exports = {
       "thumbs.dreamstime.com",
     ],
   },
-  distDir: "build",
+  // distDir: "build",
 };
